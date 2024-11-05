@@ -1,7 +1,6 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
+
 import React, { useState } from 'react';
+import uuid4 from 'uuid4';
 
 export default function Comment({ comment, setComments }) {
   const [reply, setReply] = useState('');
@@ -12,7 +11,7 @@ export default function Comment({ comment, setComments }) {
     if (reply.trim()) {
       setComments((prevComments) =>
         addReplyToComment(prevComments, comment.id, {
-          id: Date.now(),
+          id: uuid4(),
           text: reply,
           replies: [],
         })
@@ -26,6 +25,8 @@ export default function Comment({ comment, setComments }) {
   }
 
   function addReplyToComment(comments, commentId, newReply) {
+
+
     return comments.map((c) => {
       if (c.id === commentId) {
         return { ...c, replies: [...c.replies, newReply] };
@@ -58,8 +59,12 @@ export default function Comment({ comment, setComments }) {
               placeholder="Write a reply..."
               value={reply}
               onChange={(e) => setReply(e.target.value)}
+              className='border-2 border-black'
             />
+            <div className='m-1'>
+            <button className='mr-1' onClick={()=>setReply((preValue)=>preValue.slice(0,-1))}>Cancel</button>
             <button onClick={submitHandler}>Save</button>
+            </div>
           </div>
         )}
       </div>
