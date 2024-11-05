@@ -1,8 +1,9 @@
+/* eslint-disable no-dupe-keys */
 /* eslint-disable react/jsx-key */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function Otp() {
+export default function App() {
     const boxs = [1, 2, 3, 4, 5, 6];
     const maxLength = 1;
 
@@ -60,10 +61,11 @@ export default function Otp() {
                         ref={(el) => (inputRefs.current[index] = el)}
                         onChange={(e) => submitHandler(e, index)}
                         onKeyDown={keyHandler}
-                        style={{ borderColor: limit === index ? 'black' : 'white' ,width:'80px',height:'40px'}}
+                        style={{ borderColor: limit === index ? 'black' : 'white' ,width:'80px',height:'40px',border:'5px',borderColor:'black'}}
                         type='text'
                         maxLength={maxLength}
                         value={values[index]}
+                    
                     />
                 ))}
             </div>
